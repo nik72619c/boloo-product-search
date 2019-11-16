@@ -1,0 +1,6 @@
+.navbar-wrapper {
+    display: grid;
+    grid-template-columns: 2% 2% 2% 2%;
+    transform: translateX(92%);
+    padding-bottom: 2%;
+}
