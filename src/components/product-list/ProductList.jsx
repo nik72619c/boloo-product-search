@@ -68,7 +68,7 @@ export default class ProductList extends React.Component {
                     <td>sellers</td>
                     <td>
                       <Button outline color="primary" onClick={()=>this.addToCart(product.ean)}>
-                        Add to cart
+                        {this.props.actionName ? this.props.actionName : "Add to Cart"}
                       </Button>
                     </td>
                   </tr>

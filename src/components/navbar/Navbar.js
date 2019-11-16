@@ -1,20 +1,15 @@
 import React from 'react';
 import './Navbar.css'
 import { FaShoppingCart, FaRegBell,FaUserCircle } from "react-icons/fa";
+import {Link} from 'react-router-dom'
 
 export default class Navbar extends React.Component {
-constructor(props){
-    history(props);
-}
 
-    routeToDash = ()=>{
-        this.props.history.push('/compareCart');
-    }
     render(){
         return (
             <div className="navbar-wrapper">
                 <div>
-                 <FaShoppingCart onClick={this.routeToDash}/>
+                 <Link to="/compareCart"><FaShoppingCart /></Link>
                 </div>
                 <div>
                  <FaRegBell />
