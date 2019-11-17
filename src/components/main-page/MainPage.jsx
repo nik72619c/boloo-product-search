@@ -1,21 +1,27 @@
-import React from "react";
+import React, { Suspense } from "react";
 // import "./App.css";
-import ProductList from "../product-list/ProductList";
+import "./MainPage.css";
 import axios from "axios";
 import { Button, Input } from "reactstrap";
-import Navbar from '../navbar/Navbar';
+import Navbar from "../navbar/Navbar";
+// import ProductList from "../product-list/ProductList";
+const ProductList = React.lazy(() => import("../product-list/ProductList"));
 
 class MainPage extends React.Component {
   state = {
     products: [],
-    text: null
+    text: null,
+    loading: false
   };
+  arrSum = arr => arr.reduce((a, b) => a + b, 0);
   search = async text => {
+    this.setState({ loading: true });
     const params = {
       apikey: "BD3B9B7B148949609BF340E2626A4133",
       q: text,
       format: "json",
-      includeattributes: true
+      includeattributes: true,
+      offers: "all"
     };
     const headers = {
       "Access-Control-Allow-Origin": "*",
@@ -31,13 +37,23 @@ class MainPage extends React.Component {
       console.log(response);
       let productMap = [];
       response.data.products.forEach(product => {
-        productMap.push({...product,
+        let sellerCount = 0;
+        product.offerData.offers.forEach(e => {
+          if (e.seller.id) {
+            sellerCount++;
+          }
+        });
+        let prices = product.offerData.offers.map(offer => {
+          return offer.price;
+        });
+        productMap.push({
+          ...product,
+          sellerCount: sellerCount,
           title: product.title,
           rating: product.rating / 10,
           ean: product.ean,
-          prices: product.offerData.offers.map(offer => {
-            return offer.price;
-          }),
+          prices: prices,
+          avgPrice: this.arrSum(prices) / sellerCount,
           sellers: product.offerData.offers.map(offer => {
             return offer.seller.id;
           }),
@@ -48,57 +64,71 @@ class MainPage extends React.Component {
       let newProductMap = [];
       let compareCart = JSON.parse(localStorage.getItem("compareCart")) || [];
 
-      productMap.forEach(product=>{
-        let found=false;
-        for(let i=0;i<compareCart.length;i++){
-          if(compareCart[i].ean === product.ean){
-             found=true;
+      productMap.forEach(product => {
+        let found = false;
+        for (let i = 0; i < compareCart.length; i++) {
+          if (compareCart[i].ean === product.ean) {
+            found = true;
           }
         }
-        if(found === false) {
+        if (found === false) {
           newProductMap.push(product);
         }
-      })
-       this.setState({products: newProductMap});
-
+      });
+      this.setState({ products: newProductMap, loading: false });
     } catch (e) {
-      console.log("error ", e);
-    }
-  }
-
-  updateProducts = (compareCart)=>{
-    console.log(compareCart);
-          this.state.products = this.state.products.filter(product=>compareCart.indexOf(product)==-1);
-            console.log('products finally', this.state.products);
-            this.setState({products: this.state.products});
-  }
-  render() {
-    if (false && this.state.products.length == 0) {
-      return <div>empty product list</div>;
-    } else
-      return (
-        <div className="container-fluid">
-          <Navbar />
-          <div className="input-wrapper">
-            <Input
-              type="text"
-              placeholder="Type EAN or product name..."
-              className="item"
-              value={this.state.text}
-              onChange={e => this.setState({ text: e.target.value })}
-            />
-            <Button
-              color="primary"
-              onClick={() => this.search(this.state.text)}
-              className="item"
-            >
-              Search
-            </Button>
-          </div>
-
-          <ProductList ProductList={this.state.products} updateProducts={this.updateProducts}/>
-        </div>
+      alert(
+        "oops, something went wrong, please check the console for more info or try enabling CORS for"
       );
+    }
+  };
+
+  updateProducts = compareCart => {
+    console.log(compareCart);
+    this.state.products = this.state.products.filter(
+      product => compareCart.indexOf(product) == -1
+    );
+    console.log("products finally", this.state.products);
+    this.setState({ products: this.state.products });
+  };
+  render() {
+    return (
+      <div className="container-fluid main-container">
+        <div className="">
+          <div className="search-product">Search for a product</div>
+          <form>
+            <div className="row">
+              <div className="form-group col-md-3">
+                <Input
+                  type="text"
+                  placeholder="Type EAN or product name..."
+                  className="item form-control"
+                  value={this.state.text}
+                  onChange={e => this.setState({ text: e.target.value })}
+                />
+              </div>
+              <div className="form-group col-md-1">
+                <Button
+                  color="primary"
+                  onClick={() => this.search(this.state.text)}
+                  className="search-button"
+                >
+                  Search
+                </Button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="result">Result</div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ProductList
+            ProductList={this.state.products}
+            updateProducts={this.updateProducts}
+            loading={this.state.loading}
+          />
+        </Suspense>
+      </div>
+    );
   }
 }
 

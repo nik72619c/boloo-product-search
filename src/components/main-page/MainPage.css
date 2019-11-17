@@ -1,0 +1,27 @@
+.search-product{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+.main-container{
+    margin: 1% 2%;
+}
+.item{
+    border-radius: 24px!important;
+}
+.search-button{
+    width: 100%;
+    border-radius: 24px!important;
+}
+.result{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 1% 1%;
+}

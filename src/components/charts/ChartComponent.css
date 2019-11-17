@@ -1,0 +1,10 @@
+.enlarge {
+transform: translateX(10px);
+}
+
+.mixed-chart {
+    padding: 1%;
+    background: #FFFFFF;
+box-shadow: 0px 5px 20px rgba(69, 83, 240, 0.1);
+border-radius: 24px;
+}

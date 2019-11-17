@@ -1,0 +1,15 @@
+.side-chart-wrapper {
+    display: grid;
+    grid-row-gap: 2%; 
+}
+
+.main-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 89%;
+}
+
+.item1 {
+    align-self: end;
+}
+
