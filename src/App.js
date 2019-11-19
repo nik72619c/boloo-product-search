@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import MainPage from "./components/main-page/MainPage";
 import Dashboard from "./components/dashboard/Dashboard";
 import Navbar from "./components/navbar/Navbar";
+import RoutePath from "./constants/routes";
 
 class App extends React.Component {
   render() {
@@ -11,8 +12,8 @@ class App extends React.Component {
       <div>
         <Navbar />
         <Switch>
-          <Route path="/" exact component={MainPage} />
-          <Route path="/compareCart" exact component={Dashboard} />
+          <Route path={RoutePath.HOME} exact component={MainPage} />
+          <Route path={RoutePath.COMPARECART} exact component={Dashboard} />
         </Switch>
       </div>
     );

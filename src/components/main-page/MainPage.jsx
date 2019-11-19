@@ -4,6 +4,7 @@ import "./MainPage.css";
 import axios from "axios";
 import { Button, Input } from "reactstrap";
 import Navbar from "../navbar/Navbar";
+import API_ROUTES from "../../constants/ApiRoute";
 // import ProductList from "../product-list/ProductList";
 const ProductList = React.lazy(() => import("../product-list/ProductList"));
 
@@ -17,7 +18,7 @@ class MainPage extends React.Component {
   search = async text => {
     this.setState({ loading: true });
     const params = {
-      apikey: "BD3B9B7B148949609BF340E2626A4133",
+      apikey: API_ROUTES.API_KEY,
       q: text,
       format: "json",
       includeattributes: true,
@@ -30,7 +31,7 @@ class MainPage extends React.Component {
     };
     try {
       const response = await axios.get(
-        "https://api.bol.com/catalog/v4/search",
+        API_ROUTES.SEARCH,
         { params },
         { headers, credentials: true, crossDomain: true }
       );
