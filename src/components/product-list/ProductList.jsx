@@ -28,21 +28,7 @@ export default class ProductList extends React.Component {
     });
   };
 
-  //     removeFromCart = ean => {
-  //     JSON.parse(localStorage.getItem("compareCart"))|| [].forEach((product,index) => {
-  //       if (product.ean === ean) {
-  //        let el =  this.state.compareCart.slice(index,1);
-  //         this.props.ProductList.push()
-  //         this.setState({ compareCart: this.state.compareCart }, () => {
-  //           localStorage.setItem(
-  //             "compareCart",
-  //             JSON.stringify(this.state.compareCart)
-  //           );
-  //           this.props.updateProductsAndCart(this.state.compareCart, el[0]);
-  //         });
-  //       }
-  //     });
-  //   };
+  removeFromCart = ean => {};
 
   render() {
     console.log("compare cart is", this.state.compareCart);
@@ -85,16 +71,25 @@ export default class ProductList extends React.Component {
                     <td>{product.rating}</td>
                     <td>{product.sellerCount}</td>
                     <td>
-                      <Button
-                        outline
-                        color="primary"
-                        onClick={() => this.addToCart(product.ean)}
-                        className="round-bordered"
-                      >
-                        {this.props.actionName
-                          ? this.props.actionName
-                          : "Add to Cart"}
-                      </Button>
+                      {this.props.remove ? (
+                        <Button
+                          outline
+                          color="primary"
+                          onClick={() => this.removeFromCart(product.ean)}
+                          className="round-bordered"
+                        >
+                          remove
+                        </Button>
+                      ) : (
+                        <Button
+                          outline
+                          color="primary"
+                          onClick={() => this.addToCart(product.ean)}
+                          className="round-bordered"
+                        >
+                          Add to cart
+                        </Button>
+                      )}
                     </td>
                   </tr>
                 );

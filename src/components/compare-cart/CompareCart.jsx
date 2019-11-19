@@ -8,7 +8,7 @@ export default class CompareCart extends React.Component {
     return (
       <div>
         <h2 className="heading">Compare Cart</h2>
-        <ProductList ProductList={compareCart} actionName="remove" />
+        <ProductList ProductList={compareCart} remove />
       </div>
     );
   }

@@ -23,13 +23,13 @@ class ChartComponent extends Component {
             <Chart
               className={this.props.enlarge && "enlarge"}
               options={this.state.options}
-              series={this.props.series}
+              series={[this.props.series]}
               type={this.props.type}
               width={this.props.width ? this.props.width : "500"}
               height={this.props.height ? this.props.height : "auto"}
               options={{
                 grid: {
-                  show: false
+                  show: true
                 },
                 stroke: {
                   show: true,
