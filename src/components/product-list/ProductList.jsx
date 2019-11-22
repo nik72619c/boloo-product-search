@@ -53,7 +53,7 @@ export default class ProductList extends React.Component {
             {!this.props.loading ? (
               this.props.ProductList.map((product, index) => {
                 return (
-                  <tr key={index} className="table-row">
+                  <tr key={index} className={index === 0 ? "product-record record-1": "product-record"}>
                     <td>
                       <div className="column-1-wrapper">
                         <div className="column-1-item1">
@@ -62,7 +62,7 @@ export default class ProductList extends React.Component {
 
                         <div className="column-1-item2 inner-wrapper">
                           <div className="inner-item dark">{product.title}</div>
-                          <div className="inner-item">{product.ean}</div>
+                          <div className="inner-item"><span className="ean">EAN : {product.ean}</span></div>
                         </div>
                       </div>
                     </td>

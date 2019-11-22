@@ -1,8 +1,9 @@
 .column-1-wrapper {
   display: grid;
-  grid-template-columns: 10% 10%;
+  grid-template-columns: 1fr 3fr;
   justify-content: flex-start;
-  grid-column-gap: 5%;
+  grid-column-gap: 2%;
+  width: 46%;
 }
 
 .column-1-item1 {
@@ -12,6 +13,11 @@
 
 .inner-wrapper {
   display: grid;
+}
+.ean {
+    font-size: 14px;
+line-height: 17px;
+color: #90A4AE;
 }
 
 .inner-item {
@@ -40,13 +46,15 @@ table {
     border-spacing: 0 8px;
 }
 td {
-    background-color: #F5F8FB;
+    background-color: white;
     text-align: left;
+    vertical-align: middle !important;
     }
-tr{
-background:white;
+.product-record{
+background-color:white  !important;
 box-shadow: 0px 5px 20px rgba(69, 83, 240, 0.1);
-border-radius: 24px 24px 8px 8px;
+border-radius: 24px 24px 8px 8px; 
+height: 80px;
     
 }
 .product-table{
@@ -55,6 +63,11 @@ border-radius: 24px 24px 8px 8px;
 
 .round-bordered {
  border-radius: 24px !important;
+ width: 104px;
+}
+
+.text-dark {
+    color:#37474F
 }
 
 .dark {
@@ -69,4 +82,16 @@ border-radius: 24px 24px 8px 8px;
     position: absolute;
     top: 52%;
     left: 50%;
+}
+
+.record-1 {
+background: #FFFFFF;
+box-shadow: 0px 5px 20px rgba(69, 83, 240, 0.1);
+border-radius: 24px 24px 8px 8px;
+}
+
+.record-n {
+    background: #FFFFFF;
+box-shadow: 0px 5px 20px rgba(69, 83, 240, 0.1);
+border-radius: 24px 24px 8px 8px;
 }

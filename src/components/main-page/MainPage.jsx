@@ -37,7 +37,8 @@ class MainPage extends React.Component {
       );
       console.log(response);
       let productMap = [];
-      response.data.products.forEach(product => {
+      if(response.data.products){
+          response.data.products.forEach(product => {
         let sellerCount = 0;
         product.offerData.offers.forEach(e => {
           if (e.seller.id) {
@@ -77,10 +78,16 @@ class MainPage extends React.Component {
         }
       });
       this.setState({ products: newProductMap, loading: false });
+      } else {
+          alert("please enter a product name or ean to search");
+      }
+      this.setState({loading: false})
     } catch (e) {
+        this.setState({loading: false})
       alert(
-        "oops, something went wrong, please check the console for more info or try enabling CORS for"
+        "oops, something went wrong"
       );
+      console.log('error',e);
     }
   };
 
