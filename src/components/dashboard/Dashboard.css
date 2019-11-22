@@ -1,15 +1,20 @@
 .side-chart-wrapper {
     display: grid;
     grid-row-gap: 2%; 
+        margin-left: 19%;
 }
 
-.main-wrapper {
+.main-wrapper.enlarge {
     display: grid;
     grid-template-columns: 3fr 1fr;
     width: 89%;
+    transform: translateX(4%);
 }
 
 .item1 {
     align-self: end;
 }
 
+
+
+    

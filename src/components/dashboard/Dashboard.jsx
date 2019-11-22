@@ -23,7 +23,7 @@ export default class Dashboard extends React.Component {
             <ChartComponent
               type="line"
               series={{ name: "prices", data: prices }}
-              width={900}
+              width={1100}
               height={390}
               className="item1"
               enlarge={true}

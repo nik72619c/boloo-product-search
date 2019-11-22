@@ -29,7 +29,17 @@ class ChartComponent extends Component {
               height={this.props.height ? this.props.height : "auto"}
               options={{
                 grid: {
-                  show: true
+                  show: true,
+                  xaxis: {
+                    lines: {
+                      show: false
+                    }
+                  },
+                  yaxis: {
+                    lines: {
+                      show: false
+                    }
+                  }
                 },
                 stroke: {
                   show: true,

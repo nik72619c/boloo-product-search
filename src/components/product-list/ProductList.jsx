@@ -41,19 +41,24 @@ export default class ProductList extends React.Component {
         >
           <thead>
             <tr className="table-head-row">
-              <th>Product Information</th>
+              <th className="description">Product Information</th>
               <th>Average Price</th>
               <th>Lowest Price</th>
               <th>Average Rating</th>
               <th>No of Sellers</th>
-              <th>Action</th>
+              <th className="product-action">Action</th>
             </tr>
           </thead>
           <tbody>
             {!this.props.loading ? (
               this.props.ProductList.map((product, index) => {
                 return (
-                  <tr key={index} className={index === 0 ? "product-record record-1": "product-record"}>
+                  <tr
+                    key={index}
+                    className={
+                      index === 0 ? "product-record record-1" : "product-record"
+                    }
+                  >
                     <td className="column-1-container">
                       <div className="column-1-wrapper">
                         <div className="column-1-item1">
@@ -62,7 +67,9 @@ export default class ProductList extends React.Component {
 
                         <div className="column-1-item2 inner-wrapper">
                           <div className="inner-item dark">{product.title}</div>
-                          <div className="inner-item"><span className="ean">EAN : {product.ean}</span></div>
+                          <div className="inner-item">
+                            <span className="ean">EAN : {product.ean}</span>
+                          </div>
                         </div>
                       </div>
                     </td>

@@ -62,8 +62,10 @@ height: 80px;
 }
 
 .round-bordered {
- border-radius: 24px !important;
  width: 104px;
+ border: 1px solid #4553F0;
+box-sizing: border-box;
+border-radius: 24px;
 }
 
 .text-dark {
@@ -98,4 +100,16 @@ border-radius: 24px 24px 8px 8px;
 
 .column-1-container {
     width: 39%;
+}
+
+thead >tr> th {
+transform: translateX(-10%);
+}
+
+.product-action {
+        transform: translateX(13%);
+}
+
+.description {
+    transform: translateX(-1%);
 }

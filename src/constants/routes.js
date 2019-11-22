@@ -1,6 +1,6 @@
 const RoutePath = {
-    HOME: '/',
-    COMPARECART: '/compareCart'
-}
+  HOME: "/",
+  COMPARECART: "/compareCart"
+};
 
 export default RoutePath;

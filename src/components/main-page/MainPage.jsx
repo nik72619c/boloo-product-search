@@ -16,6 +16,8 @@ class MainPage extends React.Component {
   };
   arrSum = arr => arr.reduce((a, b) => a + b, 0);
   search = async text => {
+      if(this.state.text) {
+          
     this.setState({ loading: true });
     const params = {
       apikey: API_ROUTES.API_KEY,
@@ -37,58 +39,59 @@ class MainPage extends React.Component {
       );
       console.log(response);
       let productMap = [];
-      if(response.data.products){
-          response.data.products.forEach(product => {
-        let sellerCount = 0;
-        product.offerData.offers.forEach(e => {
-          if (e.seller.id) {
-            sellerCount++;
+      if (response.data.products) {
+        response.data.products.forEach(product => {
+          let sellerCount = 0;
+          product.offerData.offers.forEach(e => {
+            if (e.seller.id) {
+              sellerCount++;
+            }
+          });
+          let prices = product.offerData.offers.map(offer => {
+            return offer.price;
+          });
+          productMap.push({
+            ...product,
+            sellerCount: sellerCount,
+            title: product.title,
+            rating: product.rating / 10,
+            ean: product.ean,
+            prices: prices,
+            avgPrice: this.arrSum(prices) / sellerCount,
+            sellers: product.offerData.offers.map(offer => {
+              return offer.seller.id;
+            }),
+            image: product.images[0].url
+          });
+        });
+
+        let newProductMap = [];
+        let compareCart = JSON.parse(localStorage.getItem("compareCart")) || [];
+
+        productMap.forEach(product => {
+          let found = false;
+          for (let i = 0; i < compareCart.length; i++) {
+            if (compareCart[i].ean === product.ean) {
+              found = true;
+            }
+          }
+          if (found === false) {
+            newProductMap.push(product);
           }
         });
-        let prices = product.offerData.offers.map(offer => {
-          return offer.price;
-        });
-        productMap.push({
-          ...product,
-          sellerCount: sellerCount,
-          title: product.title,
-          rating: product.rating / 10,
-          ean: product.ean,
-          prices: prices,
-          avgPrice: this.arrSum(prices) / sellerCount,
-          sellers: product.offerData.offers.map(offer => {
-            return offer.seller.id;
-          }),
-          image: product.images[0].url
-        });
-      });
-
-      let newProductMap = [];
-      let compareCart = JSON.parse(localStorage.getItem("compareCart")) || [];
-
-      productMap.forEach(product => {
-        let found = false;
-        for (let i = 0; i < compareCart.length; i++) {
-          if (compareCart[i].ean === product.ean) {
-            found = true;
-          }
-        }
-        if (found === false) {
-          newProductMap.push(product);
-        }
-      });
-      this.setState({ products: newProductMap, loading: false });
+        this.setState({ products: newProductMap, loading: false });
       } else {
-          alert("please enter a product name or ean to search");
+        alert("no products found");
       }
-      this.setState({loading: false})
+      this.setState({ loading: false });
     } catch (e) {
-        this.setState({loading: false})
-      alert(
-        "oops, something went wrong"
-      );
-      console.log('error',e);
+      this.setState({ loading: false });
+      alert("oops, something went wrong");
+      console.log("error", e);
     }
+      } else {
+          alert('please enter a product name or EAN to search');
+      }
   };
 
   updateProducts = compareCart => {
@@ -127,7 +130,7 @@ class MainPage extends React.Component {
             </div>
           </form>
         </div>
-        <div className="result">Result</div>
+        <div className="result">Results</div>
         <Suspense fallback={<div>Loading...</div>}>
           <ProductList
             ProductList={this.state.products}
