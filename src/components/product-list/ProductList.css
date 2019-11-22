@@ -1,9 +1,8 @@
 .column-1-wrapper {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 10% 80%;
   justify-content: flex-start;
   grid-column-gap: 2%;
-  width: 46%;
 }
 
 .column-1-item1 {
@@ -94,4 +93,8 @@ border-radius: 24px 24px 8px 8px;
     background: #FFFFFF;
 box-shadow: 0px 5px 20px rgba(69, 83, 240, 0.1);
 border-radius: 24px 24px 8px 8px;
+}
+
+.column-1-container {
+    width: 39%;
 }

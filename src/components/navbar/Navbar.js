@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import { FaShoppingCart, FaRegBell, FaUserCircle } from "react-icons/fa";
+import {IoIosMore} from 'react-icons/io'
 import { Link } from "react-router-dom";
 
 export default class Navbar extends React.Component {
@@ -9,14 +10,17 @@ export default class Navbar extends React.Component {
       <div className="navbar-wrapper">
         <div>
           <Link to="/compareCart">
-            <FaShoppingCart />
+            <FaShoppingCart className="navbar-icon"/>
           </Link>
         </div>
         <div>
-          <FaRegBell />
+          <FaRegBell className="navbar-icon"/>
         </div>
         <div>
-          <FaUserCircle />
+          <FaUserCircle className="navbar-icon"/>
+        </div>
+        <div>
+        <IoIosMore className="navbar-icon"/>
         </div>
       </div>
     );

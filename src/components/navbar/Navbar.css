@@ -1,6 +1,12 @@
 .navbar-wrapper {
-    display: grid;
+display: grid;
     grid-template-columns: 2% 2% 2% 2%;
-    transform: translateX(90%);
+    transform: translate(84%,77%);
     padding-bottom: 2%;
+    grid-column-gap: 1.5%;
+
+}
+
+.navbar-icon {
+    font-size: 17px;
 }

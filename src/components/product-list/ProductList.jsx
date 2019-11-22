@@ -54,7 +54,7 @@ export default class ProductList extends React.Component {
               this.props.ProductList.map((product, index) => {
                 return (
                   <tr key={index} className={index === 0 ? "product-record record-1": "product-record"}>
-                    <td>
+                    <td className="column-1-container">
                       <div className="column-1-wrapper">
                         <div className="column-1-item1">
                           <img src={product.image} className="image-medium" />
