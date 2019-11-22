@@ -101,8 +101,8 @@ class MainPage extends React.Component {
   };
   render() {
     return (
-      <div className="container-fluid main-container">
-        <div className="">
+      <div className="main-container">
+        <div className="inner-wrapper">
           <div className="search-product">Search for a product</div>
           <form>
             <div className="row">

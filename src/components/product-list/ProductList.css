@@ -58,6 +58,7 @@ height: 80px;
 }
 .product-table{
     margin-right: 4%;
+    transform: translateX(3%);
 }
 
 .round-bordered {

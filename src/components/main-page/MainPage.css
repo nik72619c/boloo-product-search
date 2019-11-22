@@ -27,4 +27,10 @@ margin-left: -2%;
     font-size: 20px;
     line-height: 24px;
     margin: 1% 1%;
+        width: 10%;
+    transform: translateX(48%);
+}
+
+.inner-wrapper {
+    transform: translateX(3%);
 }
