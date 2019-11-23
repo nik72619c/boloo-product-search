@@ -23,8 +23,8 @@ export default class Dashboard extends React.Component {
             <ChartComponent
               type="line"
               series={{ name: "prices", data: prices }}
-              width={1100}
-              height={390}
+              width={1360}
+              height={450}
               className="item1"
               enlarge={true}
             />
@@ -35,11 +35,13 @@ export default class Dashboard extends React.Component {
                 type="line"
                 series={{ name: "ratings", data: ratings }}
                 width={300}
+                height={220}
               />
               <ChartComponent
                 type="bar"
                 series={{ name: "seller count", data: sellerCounts }}
                 width={300}
+                height={220}
               />
             </Suspense>
           </div>

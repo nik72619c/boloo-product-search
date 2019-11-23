@@ -108,6 +108,7 @@ transform: translateX(-10%);
 
 .product-action {
         transform: translateX(13%);
+        width: 10%;
 }
 
 .description {

@@ -6,7 +6,7 @@ export default class CompareCart extends React.Component {
   render() {
     let compareCart = JSON.parse(localStorage.getItem("compareCart")) || [];
     return (
-      <div>
+      <div className="compare-cart-container">
         <h2 className="heading">Compare Cart</h2>
         <ProductList ProductList={compareCart} remove />
       </div>
