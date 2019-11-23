@@ -15,6 +15,13 @@
     align-self: end;
 }
 
+.price-label {
+        width: 8%;
+    position: absolute;
+    top: 32%;
+    z-index: 10;
+    left: 4%;
+}
 
 
     

@@ -16,7 +16,7 @@ class MainPage extends React.Component {
   };
   arrSum = arr => arr.reduce((a, b) => a + b, 0);
   search = async text => {
-      if(this.state.text) {
+      if(this.state.text && this.state.text.trim().length>0) {
           
     this.setState({ loading: true });
     const params = {
